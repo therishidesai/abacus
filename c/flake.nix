@@ -6,14 +6,15 @@
       let pkgs = import nixpkgs {
             system = "x86_64-linux";
           };
-      in pkgs.stdenv.mkDerivation {
+          stdenv = pkgs.clangStdenv;
+      in stdenv.mkDerivation {
         pname = "abacus-c";
         version = "1.0.0";
         src = ./.;
 
         # TODO: Maybe move to a Make file 
         buildPhase = ''
-                   gcc abacus.c -o abacus-c
+                   clang abacus.c -o abacus-c
         '';
 
         installPhase = ''
