@@ -9,14 +9,15 @@
       in pkgs.stdenv.mkDerivation {
         pname = "abacus-c";
         version = "1.0.0";
-        src = "./abacus.c";
+        src = ./.;
 
+        # TODO: Maybe move to a Make file 
         buildPhase = ''
                    gcc abacus.c -o abacus-c
         '';
 
         installPhase = ''
-                     mkdir $out/bin
+                     mkdir -p $out/bin
                      cp abacus-c $out/bin/.
         '';
       };
