@@ -12,10 +12,6 @@
         version = "1.0.0";
         src = ./.;
 
-        # unpackPhase = ''
-        #             ls -la $src
-        # '';
-
         buildPhase = ''
                    ls -la
                    make
