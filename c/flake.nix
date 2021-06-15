@@ -12,9 +12,13 @@
         version = "1.0.0";
         src = ./.;
 
-        # TODO: Maybe move to a Make file 
+        # unpackPhase = ''
+        #             ls -la $src
+        # '';
+
         buildPhase = ''
-                   clang abacus.c -o abacus-c
+                   ls -la
+                   make
         '';
 
         installPhase = ''
