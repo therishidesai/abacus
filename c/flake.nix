@@ -15,11 +15,13 @@
         buildPhase = ''
                    ls -la
                    make
+                   make tests
         '';
 
         installPhase = ''
                      mkdir -p $out/bin
-                     cp abacus-c $out/bin/.
+                     cp abacus $out/bin/.
+                     cp stack-test $out/bin/.
         '';
       };
 

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "test.h"
+#include "stack.h"
 #define BUFFER_SIZE 1024
 
 
@@ -36,24 +36,35 @@ int is_operator(char op) {
 
 // TODO: Have this return a data structure of the parsed input.
 void parse_input(const char *input) {
-	long int num;
+	unsigned int op = 0;
+	unsigned int sp = 0;
+	stack* s = stack_create(strlen(input));
+	
 	while (input != NULL && *input != '\0') {
 		if (isdigit(*input)) {
-			num = strtol(input, &input, 10);
+			// put it in to out
+			long int num = strtol(input, &input, 10);
 			printf("%ld\n", num);
+			stack_push(s, &num);
+			printf("top = %ld\n", *(unsigned int*)stack_top(s));
 		} else if (is_operator(*input)) {
+			
 			printf("%c\n", *input);
 			++input;
 		} else {
 			++input;
 		}
 	}
+
+	while (stack_top(s) != NULL) {
+		printf("stack: %ld\n", *(int*)(stack_top(s)));
+		stack_pop(s);
+	}
 }
 
 int main() {
 	int exit_flag = 0;
 
-	test_hello();
 	printf("Welcome to the C Abacus.\n Supported operators +, -, /, *, ().\n");
 	printf("Does integer math :(.\n");
 	
